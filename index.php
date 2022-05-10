@@ -1,5 +1,5 @@
 <?php
-    // ...
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +26,8 @@
 
                 // I use my personal function with my namespace
                 // ...
+                include_once './functions/aymeric.php';
+                checkPassword($password);
 
             }
             else {
