@@ -13,23 +13,21 @@ function checkPassword($password) {
     $special = preg_match ( '@[^\w]@', $password );
     $caractere = strlen($password) >= 12;
 
-    // Si le password est vide
     
-    if(empty( $password == $chiffre || $majuscule || $minuscule || $special )){
-        
+    if(empty($password == $chiffre xor $majuscule xor $minuscule xor $special)){
         //Si le password contient 1 condition validé
         echo '<div class="progress">
-        <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" 
-        role="progressbar" style="width: 20%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>';
+            <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" 
+                role="progressbar" style="width: 20%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>';
     }        
     
-    elseif($password == $majuscule && $minuscule or $majuscule && $chiffre or $majuscule && $special){
+    elseif($password == $chiffre and $minuscule xor  $chiffre and $majuscule xor $chiffre and $special xor $minuscule and $majuscule xor $minuscule and $special xor $majuscule and $special){
         //Si le password contient 2 conditions validé
         echo '<div class="progress">
-        <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" 
-        role="progressbar" style="width: 40%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>';
+            <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" 
+                role="progressbar" style="width: 40%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>';
     }
     
     elseif($password == $majuscule && $minuscule && $chiffre or $majuscule && $minuscule && $special){
@@ -54,13 +52,46 @@ function checkPassword($password) {
         <div class="progress-bar progress-bar-striped bg-info progress-bar-animated" 
         role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
         </div>';
-        echo '<a class="btn btn-success" href="index.php" role="button">OK</a>';    
     }
     
     else{
+        // Si le password est vide
         echo '<div class="progress">
                 <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" 
                 role="progressbar" style="width: 0%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
             </div>';
     }
+
+    if(!$chiffre || !$minuscule || !$majuscule || !$special || !$caractere ) {
+            
+        if($chiffre || $minuscule || $majuscule || $special || !$caractere ) {
+            echo '<ul class="list-group position-absolute top-50 start-50 translate-middle w-15">
+                <li class="list-group-item active" aria-current="true">Le mot de passe doit contenir au moins:</li>';
+        }
+        
+        if( !$chiffre ) {
+            echo '<li class="list-group-item">1 chiffre</li>';
+        }
+
+        if( !$minuscule ) {
+            echo '<li class="list-group-item">1 minuscule</li>';
+        }
+
+        if( !$majuscule ) {
+            echo '<li class="list-group-item">1 majuscule</li>';
+        }
+
+        if( !$special ) {
+            echo '<li class="list-group-item">1 caractère spécial</li>';
+        }
+
+        if( !$caractere ) {
+            echo '<li class="list-group-item">12 caractères</li>';
+        }
+        echo '</ul>';
+    } 
+
+    else {
+        echo '<h6 class="text-center btn btn-success position-absolute top-50 start-50 translate-middle py-2 px-3">OK</h6>';
+    }    
 }
