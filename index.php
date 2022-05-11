@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    include_once './functions/aymeric.php';
 ?>
 
 <!DOCTYPE html>
@@ -25,9 +25,7 @@
                 $password = $_GET['password'];
 
                 // I use my personal function with my namespace
-                // ...
-                include_once './functions/aymeric.php';
-                checkPassword($password);
+                aymeric\checkPassword($password);
 
             }
             else {
